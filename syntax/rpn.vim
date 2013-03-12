@@ -13,22 +13,22 @@ syn case match
 syn sync minlines=50
 
 " Identifiers
-syn match rpnIdentifier "\<[a-z][a-zA-Z?!&|_]*\>"
+syn match rpnIdentifier "\<[^\s\[\]{}]\+\>"
 
 " Variables
-syn match rpnVariable "\<[A-Z][a-zA-Z?!&|_]*\>"
+syn match rpnVariable "\<[A-Z][^\s\[\]{}]\*\>"
 
 " Arguments
-syn match rpnArgument "\<[A-Z][a-zA-Z?!&|_]*\>" contained
+syn match rpnArgument "\<[A-Z][^\s\[\]{}]\*\>" contained
 
 " blocks
 " syn region rpnBlock start="{" end="}"
 syn region rpnArgumentDefs start="\[" end="\]" contains=rpnArgument
 
 " function definitions
-syn match rpnFunctionName "\<[a-z][a-zA-Z?!&|_]*\>" contained
+syn match rpnFunctionName "\<[^\s\[\]{}]\+\>" contained
 syn keyword rpnFunctionKeyword def contained
-syn match rpnFunctionDefinition "\<[a-z][a-zA-Z?!&|_]*\>\s*def" contains=rpnFunctionName,rpnFunctionKeyword
+syn match rpnFunctionDefinition "\<[^\s\[\]{}]\+\>\s*def" contains=rpnFunctionName,rpnFunctionKeyword
 
 " namespace definitions
 syn match rpnNamespaceName "\<[a-z][a-zA-Z?!&|_]*\>" contained
@@ -75,6 +75,7 @@ hi link rpnFunctionName Function
 hi link rpnFunctionCall Function
 hi link rpnNamespace Structure
 hi link rpnNamespaceName Structure
+hi link rpnSymbol Constant
 
 let b:current_syntax = "rpn"
 
